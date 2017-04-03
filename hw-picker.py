@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import argparse, random, re
 
 def tryint(s):
@@ -14,7 +14,7 @@ def alphanum_key(s):
     return [ tryint(c) for c in re.split('.', s) ]
 
 if __name__ == '__main__':
-	parser = argparse.ArgumentParser(description='pick random homework problems from textbook.')
+  parser = argparse.ArgumentParser(description='pick random homework problems from textbook.')
 	
   parser.add_argument('chapter', type=int, help='chapter to pick problems from.')
 	
@@ -29,6 +29,7 @@ if __name__ == '__main__':
 		tmp = "%d.%d" %(args.chapter, random.randint(0,args.problems))
 		list.append(tmp)
 		i += 1
+  #sort list -> [12.1, 12.2, 12.5, etc]
   list.sort(key=alphanum_key)
   #print out list
   print(list)
