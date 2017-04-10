@@ -23,13 +23,11 @@ if __name__ == '__main__':
   parser.add_argument('pick', type=int, help='number of problems to pick')
 	
   args = parser.parse_args()
-	list = []
-	i = 0
-	while i < args.pick:
-		tmp = "%d.%d" %(args.chapter, random.randint(0,args.problems))
-		list.append(tmp)
-		i += 1
-  #sort list -> [12.1, 12.2, 12.5, etc]
-  list.sort(key=alphanum_key)
+  set_problems = set()
+  while set_problems.__len__() < args.pick:
+        tmp = "%d.%d" %(args.chapter, random.randint(1,args.problems))
+	set_problems.add(tmp)
+  list_probems = list(set_problems)
+  list_probems.sort(key=alphanum_key)
   #print out list
-  print(list)
+  print(list_probems)
