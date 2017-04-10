@@ -1,7 +1,6 @@
 #!/usr/bin/python
 import argparse, random, re
 
-
 def tryint(s):
 		try:
 				return int(s)
@@ -24,8 +23,8 @@ if __name__ == '__main__':
 											help='number of problems to pick')
 	args = parser.parse_args()
 
-	set_problems = set()
 	try:
+		set_problems = set()
 		if args.pick > args.problems:
 			raise ValueError('pick is larger than problems pool')
 		while set_problems.__len__() < args.pick:
