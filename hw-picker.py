@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 import argparse, random, re
 
+
 def tryint(s):
 		try:
 				return int(s)
 		except:
 				return s
-
+	 
 def alphanum_key(s):
 		""" Turn a string into a list number chunks.
 				"12.4" -> [12, 4]
@@ -23,18 +24,22 @@ if __name__ == '__main__':
 											help='number of problems to pick')
 	args = parser.parse_args()
 
+	set_problems = set()
 	try:
-		set_problems = set()
 		if args.pick > args.problems:
 			raise ValueError('pick is larger than problems pool')
 		while set_problems.__len__() < args.pick:
-			tmp = "%d.%d" %(args.chapter, random.randint(1,args.problems))
-			set_problems.add(tmp)
+			set_problems.add(random.randint(1,args.problems))
 
-		list_probems = list(set_problems)
-		list_probems.sort(key=alphanum_key)
+		set_problems = sorted(set_problems)
+
+		list_problems = []
+		for number in set_problems:
+			tmp = "%d.%d" %(args.chapter, number)
+			list_problems.append(tmp)
+		
 		#print out list
-		print(list_probems)
+		print(list_problems)
 	except Exception as error:
 		print('caught this error: ' + repr(error))
 
